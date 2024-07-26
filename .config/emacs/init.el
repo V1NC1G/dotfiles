@@ -131,6 +131,7 @@
 ;; Org Mode
 ;;; Table of Contents
 (use-package toc-org
+  :ensure t
   :commands toc-org-enable
   :init
   (add-hook 'org-mode-hook 'toc-org-enable))
@@ -145,7 +146,21 @@
   :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; Org Roam
+;;; Org Roam
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory "~/Documents/cvdcg/vinci-roam-notes/")
+  :bind
+  (("C-c n l" . org-roam-buffer-toggle)
+   ("C-c n f" . org-roam-node-find)
+   ("C-c n i" . org-roam-node-insert))
+  :config
+  (org-roam-setup))
+
+;;; org road dependency
+(use-package emacsql-sqlite
+  :ensure t)
 
 ;; Completion
 ;;; Vertico
@@ -232,7 +247,37 @@
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p")))
 
-;; Git
+;; Helper packages
+;;; Which Key
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode 1)
+  :diminish
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
+
+;; DEVELOPMENT
+;;; Treesitter
+(use-package treesit-auto
+  :ensure t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
+;;; Vterm
+(use-package vterm
+  :ensure t
+  :config
+  (setq vterm-max-scrollback 10000))
+
+(use-package multi-vterm
+  :ensure t)
+
+;;; Git
 (use-package magit
   :ensure t)
 
