@@ -48,6 +48,7 @@
   :config
   (general-define-key
    "C-x C-b" 'persp-ibuffer
+   "C-x b" 'persp-switch-to-buffer
    "C-c f" 'recentf
    "M-o" 'other-window
    "C-x r b" 'consult-bookmark
@@ -90,11 +91,17 @@
 
 ;; UI Improvements
 ;;; Color Scheme
-(use-package doom-themes
+
+;;;(use-package doom-themes
+;;;  :ensure t
+;;;  :config
+;;;  (load-theme 'doom-homage-black t)
+;;;  (doom-themes-org-config))
+
+(use-package ef-themes
   :ensure t
   :config
-  (load-theme 'doom-spacegrey t)
-  (doom-themes-org-config))
+  (load-theme 'ef-dream t))
 
 ;;; Icons
 ;;; This is to properly render nerd icons when using doom-modeline.
@@ -215,8 +222,10 @@
 ;;; In buffer frontend completion UI.
 (use-package corfu
   :ensure t
-  :init
-  (global-corfu-mode)
+  :hook
+  ((prog-mode . corfu-mode)
+   (shell-mode . corfu-mode)
+   (eshell-mode . corfu-mode))
   :custom
   (corfu-auto t))
 
@@ -238,6 +247,9 @@
   :config
   (projectile-mode 1)
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
+
+(use-package ripgrep
+  :ensure t)
 
 ;;; Perspective
 (use-package perspective
@@ -292,3 +304,15 @@
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(eglot)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
