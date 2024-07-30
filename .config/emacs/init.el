@@ -165,9 +165,25 @@
   :config
   (org-roam-setup))
 
-;;; org road dependency
+;;; org roam dependency
 (use-package emacsql-sqlite
   :ensure t)
+
+;;; Org Roam UI
+;;; Package that shows a graph for org roam notes
+(use-package org-roam-ui
+  :ensure t
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+;;; Org Roam UI Dependency
+(use-package websocket
+  :ensure t
+  :after org-roam)
 
 ;; Completion
 ;;; Vertico
