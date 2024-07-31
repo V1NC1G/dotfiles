@@ -100,7 +100,7 @@
 
 (use-package ef-themes
   :ensure t
-  :config
+  :init
   (load-theme 'ef-dream t))
 
 ;;; Icons
@@ -184,6 +184,9 @@
 (use-package websocket
   :ensure t
   :after org-roam)
+
+;;; Additional org mode configuration
+(setq org-image-actual-width nil)
 
 ;; Completion
 ;;; Vertico
