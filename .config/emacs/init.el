@@ -92,16 +92,16 @@
 ;; UI Improvements
 ;;; Color Scheme
 
-;;;(use-package doom-themes
-;;;  :ensure t
-;;;  :config
-;;;  (load-theme 'doom-homage-black t)
-;;;  (doom-themes-org-config))
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'doom-plain t)
+;;   (doom-themes-org-config))
 
 (use-package ef-themes
   :ensure t
-  :init
-  (load-theme 'ef-dream t))
+  :config
+  (load-theme 'ef-light t))
 
 ;;; Icons
 ;;; This is to properly render nerd icons when using doom-modeline.
