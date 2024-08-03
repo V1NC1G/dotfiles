@@ -67,7 +67,7 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;;; Font Setting
-(set-face-attribute 'default nil :font "Hasklug Nerd Font Mono" :height 140)
+(set-face-attribute 'default nil :font "Mononoki Nerd Font Mono" :height 160)
 (setq-default line-spacing 5)
 
 ;;; Editing
