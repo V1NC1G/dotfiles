@@ -67,7 +67,7 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;;; Font Setting
-(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 160)
+(set-face-attribute 'default nil :font "Hasklug Nerd Font Mono" :height 160)
 (setq-default line-spacing 5)
 
 ;;; Editing
@@ -91,12 +91,6 @@
 
 ;; UI Improvements
 ;;; Color Scheme
-
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (load-theme 'doom-plain t)
-;;   (doom-themes-org-config))
 
 (use-package ef-themes
   :ensure t
@@ -123,6 +117,48 @@
   (setq doom-modeline-buffer-state-icon t)
   (setq doom-modeline-buffer-modification-icon t)
   (setq doom-modeline-lsp-icon t))
+
+;;; Dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (add-hook 'elpaca-after-init-hook #'dashboard-insert-startupify-lists)
+  (add-hook 'elpaca-after-init-hook #'dashboard-initialize)
+  (dashboard-setup-startup-hook))
+
+;;; Dashboard setup
+(setq dashboard-banner-logo-title "Heads or tails?")
+(setq dashboard-startup-banner 'logo)
+(setq dashboard-center-content t)
+(setq dashboard-vertically-center-content t)
+(setq dashboard-projects-backend 'projectile)
+
+(setq dashboard-items '((projects . 10)
+                        (recents . 5)
+                        (bookmarks . 5)
+                        (agenda . 5)))
+
+(setq dashboard-startupify-list '(dashboard-insert-banner
+                                  dashboard-insert-newline
+                                  dashboard-insert-banner-title
+                                  dashboard-insert-newline
+                                  dashboard-insert-navigator
+                                  dashboard-insert-newline
+                                  dashboard-insert-init-info
+                                  dashboard-insert-items
+                                  dashboard-insert-newline
+                                  dashboard-insert-footer))
+
+(setq dashboard-display-icons-p t)
+(setq dashboard-icon-type 'nerd-icons)
+
+(setq dashboard-projects-switch-function 'projectile-persp-switch-project)
+
+;;; Dashboard dependencies
+(use-package page-break-lines
+  :ensure t
+  :config
+  (page-break-lines-mode))
 
 ;;; Diminish
 ;;; Used to not show minor modes when using some packages.
@@ -277,6 +313,9 @@
   (persp-mode)
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p")))
+
+(use-package persp-projectile
+  :ensure t)
 
 ;; Helper packages
 ;;; Which Key
