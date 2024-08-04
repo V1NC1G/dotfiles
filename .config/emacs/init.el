@@ -66,6 +66,12 @@
 (column-number-mode)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;;; Font Setting
 (set-face-attribute 'default nil :font "Mononoki Nerd Font Mono" :height 150)
 (setq-default line-spacing 5)
@@ -95,7 +101,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-light t))
+  (load-theme 'ef-winter t))
 
 ;;; Icons
 ;;; This is to properly render nerd icons when using doom-modeline.
@@ -329,6 +335,7 @@
   (setq which-key-idle-delay 1))
 
 ;; DEVELOPMENT
+
 ;;; Treesitter
 (use-package treesit-auto
   :ensure t
@@ -338,15 +345,6 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
-;;; Vterm
-(use-package vterm
-  :ensure t
-  :config
-  (setq vterm-max-scrollback 10000))
-
-(use-package multi-vterm
-  :ensure t)
-
 ;;; Git
 (use-package magit
   :ensure t)
@@ -354,6 +352,12 @@
 ;;; transient package is used to fix the dependency issues of magit
 (use-package transient
   :ensure t)
+
+;;; EditorConfig
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;; PATH Configuration
 ;;; exec-path-from-shell is a package that copies the shell PATH variable to Emacs
@@ -367,6 +371,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("159a29ab0ec5ba4e2811eddd9756aa779b23467723dcbdd223929fbf2dde8954" "355e3439089e3b37bb143afc0a60ce091533fe467db2ab0f2ae34d13be7a47c5" "7776ba149258df15039b1f0aba4b180d95069b2589bc7d6570a833f05fdf7b6d" "ccff17f0cb616e239e2de4bd78f0b2e8f1f49291aa43c50845e250203be27a95" "515ebca406da3e759f073bf2e4c8a88f8e8979ad0fdaba65ebde2edafc3f928c" "263e3a9286c7ab0c4f57f5d537033c8a5943e69d142e747723181ab9b12a5855" "ed1b7b4db911724b2767d4b6ad240f5f238a6c07e98fff8823debcfb2f7d820a" "b216e9b72dc8c2b702e4fcfd3c0af2d73c87eba46fd4db824ddb50863447d6a9" default))
  '(package-selected-packages '(eglot)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
