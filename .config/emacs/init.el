@@ -68,6 +68,7 @@
 
 (dolist (mode '(org-mode-hook
                 term-mode-hook
+                vterm-mode-hook
                 shell-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -358,6 +359,21 @@
   :ensure t
   :config
   (editorconfig-mode 1))
+
+;;; Snippets
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-reload-all)
+  :hook
+  (prog-mode . yas-minor-mode))
+
+(use-package yasnippet-snippets
+  :ensure t)
+
+;;; Terminal Emulator
+(use-package vterm
+  :ensure t)
 
 ;; PATH Configuration
 ;;; exec-path-from-shell is a package that copies the shell PATH variable to Emacs
