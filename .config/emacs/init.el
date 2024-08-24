@@ -74,7 +74,7 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;;; Font Setting
-(set-face-attribute 'default nil :font "Mononoki Nerd Font Mono" :height 150)
+(set-face-attribute 'default nil :font "Mononoki Nerd Font Mono" :height 160)
 (setq-default line-spacing 5)
 
 ;;; Editing
@@ -102,7 +102,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-winter t))
+  (load-theme 'ef-duo-dark t))
 
 ;;; Icons
 ;;; This is to properly render nerd icons when using doom-modeline.
@@ -179,6 +179,16 @@
   (prog-mode . rainbow-delimiters-mode))
 
 ;; Org Mode
+;;; Configure Babel Languages
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (C . t)
+     (java . t)
+     (js . t))))
+
 ;;; Table of Contents
 (use-package toc-org
   :ensure t
@@ -374,6 +384,12 @@
 ;;; Terminal Emulator
 (use-package vterm
   :ensure t)
+
+;;; Markdown Mode
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "pandoc"))
 
 ;; PATH Configuration
 ;;; exec-path-from-shell is a package that copies the shell PATH variable to Emacs
