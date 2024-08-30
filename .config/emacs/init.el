@@ -63,6 +63,8 @@
 (scroll-bar-mode -1)
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
+(setq set-fill-column '80)
+(global-display-fill-column-indicator-mode 1)
 (column-number-mode)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -102,7 +104,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-duo-dark t))
+  (load-theme 'ef-night t))
 
 ;;; Icons
 ;;; This is to properly render nerd icons when using doom-modeline.
