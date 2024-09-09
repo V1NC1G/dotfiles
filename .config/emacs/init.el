@@ -104,7 +104,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-night t))
+  (load-theme 'ef-dream t))
 
 ;;; Icons
 ;;; This is to properly render nerd icons when using doom-modeline.
@@ -348,6 +348,15 @@
   (setq which-key-idle-delay 1))
 
 ;; DEVELOPMENT
+
+;;; Language specific
+(add-hook 'mhtml-mode-hook
+          (lambda ()
+            (setq sgml-basic-offset 4)))
+
+(add-hook 'typescript-ts-mode-hook
+          (lambda ()
+            (setq typescript-ts-mode-indent-offset 4)))
 
 ;;; Treesitter
 (use-package treesit-auto
